@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排行榜</title>
+    <style>
+        /* 全局样式 */
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* 顶部红色标题栏 */
+        header {
+            background-color: #e60012;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* 导航栏样式 */
+        .nav-container {
+            display: flex;
+            background-color: #fff;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .nav-tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 16px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-tab.active {
+            color: #e60012;
+            font-weight: bold;
+            border-bottom: 2px solid #e60012;
+        }
+
+        /* 添加内容区域样式 */
+        .content {
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        /* 卡片容器 */
+        .card {
+            background: #fff;
+            margin: 12px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* 封面图和排名角标 */
+        .cover {
+            position: relative;
+        }
+
+        .cover img {
+            height: 200px;
+            width: 200px;
+            display: block;
+        }
+
+        .rank {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: red;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 3px 6px;
+            border-radius: 5px;
+        }
+
+        /* 信息文字区域 */
+        .info {
+            padding: 10px;
+        }
+
+        .title {
+            font-size: 16px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        /* 底部统计信息 */
+        .stats {
+            display: flex;
+            justify-content: flex-start;
+            font-size: 12px;
+            color: #999;
+            gap: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 顶部 -->
+    <header>排行榜</header>
+
+    <!-- 选择栏 -->
+    <!-- 顶部导航栏 -->
+    <div class="nav-container">
+        <div class="nav-tab active" onclick="switchTab(this, 'content1')">好文精选</div>
+        <div class="nav-tab" onclick="switchTab(this, 'content2')">热门资讯</div>
+    </div>
+
+    <div id="content1" class="content">
+        <!-- 第一条卡片 -->
+        <div class="card">
+            <div class="cover">
+                <img src="imgs/sku-1.jpg" alt="示例图片">
+                <div class="rank">TOP 1</div>
+            </div>
+            <div class="info">
+                <div class="title">安卓电视通过 KODI 看 IPTV</div>
+                <div class="desc">免费开源播放器，支持网络电视流媒体播放</div>
+                <div class="stats">
+                    <span>105 评论</span>
+                    <span>345 点赞</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二条卡片 -->
+        <div class="card">
+            <div class="cover">
+                <img src="imgs/sku-1.jpg" alt="示例图片">
+                <div class="rank">TOP 2</div>
+            </div>
+            <div class="info">
+                <div class="title">起跑线 26期：5km 跑步，你到了哪一级别？</div>
+                <div class="desc">学会几个跑步技巧，助你提升 PB</div>
+                <div class="stats">
+                    <span>151 评论</span>
+                    <span>132 点赞</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第三条卡片 -->
+        <div class="card">
+            <div class="cover">
+                <img src="imgs/sku-1.jpg" alt="示例图片">
+                <div class="rank">TOP 3</div>
+            </div>
+            <div class="info">
+                <div class="title">搞笑视频：百度热搜奇葩榜单</div>
+                <div class="desc">今天的热榜第一你一定想不到！</div>
+                <div class="stats">
+                    <span>200 评论</span>
+                    <span>520 点赞</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content2" class="content">
+        <!-- 第一条卡片 -->
+        <div class="card">
+            <div class="cover">
+                <img src="imgs/sku-1.jpg" alt="示例图片">
+                <div class="rank">TOP 1</div>
+            </div>
+            <div class="info">
+                <div class="title">安卓电视通过 KODI 看 IPTV</div>
+                <div class="desc">免费开源播放器，支持网络电视流媒体播放</div>
+                <div class="stats">
+                    <span>105 评论</span>
+                    <span>345 点赞</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二条卡片 -->
+        <div class="card">
+            <div class="cover">
+                <img src="imgs/sku-1.jpg" alt="示例图片">
+                <div class="rank">TOP 2</div>
+            </div>
+            <div class="info">
+                <div class="title">起跑线 26期：5km 跑步，你到了哪一级别？</div>
+                <div class="desc">学会几个跑步技巧，助你提升 PB</div>
+                <div class="stats">
+                    <span>151 评论</span>
+                    <span>132 点赞</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第三条卡片 -->
+        <div class="card">
+            <div class="cover">
+                <img src="imgs/sku-1.jpg" alt="示例图片">
+                <div class="rank">TOP 3</div>
+            </div>
+            <div class="info">
+                <div class="title">搞笑视频：百度热搜奇葩榜单</div>
+                <div class="desc">今天的热榜第一你一定想不到！</div>
+                <div class="stats">
+                    <span>200 评论</span>
+                    <span>520 点赞</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JS核心代码 -->
+    <script>
+        function switchTab(clickedTab, contentId) {
+            // 移除所有标签的active类
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // 隐藏所有内容
+            document.querySelectorAll('.content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // 激活当前标签和内容
+            clickedTab.classList.add('active');
+            document.getElementById(contentId).classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
